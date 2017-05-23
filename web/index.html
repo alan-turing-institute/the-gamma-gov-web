@@ -115,7 +115,8 @@ chart.column(data).legend(position="none")
           //"houses": g.providers.pivot("http://127.0.0.1:8087/land-registry-monthly-price-paid-data"),
           //"medals": g.providers.pivot("http://127.0.0.1:8087/medals"),
           "libraries": g.providers.library("/node_modules/thegamma-script/dist/libraries.json"),
-          "olympics": g.providers.pivot(services + "pdata/olympics") });
+          "olympics": g.providers.pivot(services + "pdata/olympics"),
+          "expenditure": g.providers.rest("127.0.0.1:8080") });
           
       // Create context which is used to create editor & run code
       // When errors are reported, display the errors in modal dialog (while editting)
