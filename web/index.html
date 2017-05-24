@@ -13,7 +13,7 @@
   <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
   <meta name="theme-color" content="#F4C300">    
-  <title>The Gamma: Embedding sample</title>
+  <title>The Gamma: Expenditure Edition</title>
 
   <!-- thegamma.css contains style definitions for the live preview and you'll need it in 
     your projects that use The Gamma; custom.css contains extra styling for this demo page -->
@@ -23,17 +23,14 @@
 <body>
   <div id="sizer"></div>
 
-  <script type="text/thegamma" id="demo">let data =
-  olympics
-    .'filter data'.'Games is'.'Rio (2016)'.then
-    .'group data'.'by Athlete'.'sum Gold'.then
-    .'sort data'.'by Gold descending'.then
-    .paging.take(8)
-    .'get series'.'with key Athlete'.'and value Gold'
+  <script type="text/thegamma" id="demo">let data = 
+  expenditure
+    .byYear.'2015'
+    .inTermsOf.GDP
+    .sortValues(reverse=true).skip(1).take(6).shuffle()
 
-chart.column(data).legend(position="none")
-  .set(fontName="Roboto", fontSize=12, colors=["#F4C300"],
-    title="Top medalists (by number of gold medals) at Rio 2016")
+youguess.columns(data)
+  .setLabel("Guess how much we spend (as % of GDP) on the top 6 government functions!")
   </script>
 
   <article>
@@ -41,16 +38,8 @@ chart.column(data).legend(position="none")
       <div class="row">
       <div class="col-md-2 hidden-sm"></div>
       <div class="col-md-8 col-sm-12">
-        <a href="/"><h1><span><strong>The Gamma</strong>: Embedding sample</span></h1></a>
-
-        <p>This is a minimal sample page demonstrating how to use <a href="https://thegamma.net">The 
-          Gamma</a> for creating open, transparent and customizable visualizations. The chart below
-          is based on the <a href="http://rio2016.thegamma.net/">Olympic medalists visualizations</a>
-          and shows the top athletes (by number of gold medals) in Rio 2016 games. You can click 
-          "Edit source code" to see and modify the visualization. The full source code of this
-          demo is <a href="https://github.com/the-gamma/thegamma-sample-web">available on GitHub</a>. 
-          See the README for description of how it works!        
-         </p>        
+        <a href="/"><h1><span><strong>The Gamma</strong>: Expenditure Edition</span></h1></a>
+        <p>This is a minimal sample page demonstrating the new expenditure data. In order for it to work, you need to host <a href="https://github.com/alan-turing-institute/thegamma-gov/tree/dev">this service</a> at 127.0.0.1:8080!</p>        
       </div>
       </div>
       <div class="row">
