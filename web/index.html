@@ -102,10 +102,10 @@ chart.column(data).legend(position="none")
     // This follows the standard way of loading the Monaco editor (https://github.com/Microsoft/monaco-editor)
     // although we use normal 'require.js' and also load the compiled 'thegamma.js' (which depends on Monaco)
     require.config({
-      paths:{'vs':'node_modules/monaco-editor/min/vs'},
+      paths:{'vs':'https://thegamma.net/lib/thegamma-0.0.18/vs'},
       map:{ "*":{"monaco":"vs/editor/editor.main"}}
     });
-    require(["vs/editor/editor.main", "node_modules/thegamma-script/dist/thegamma.js"], function (_, g) {      
+    require(["vs/editor/editor.main", "https://thegamma.net/lib/thegamma-0.0.18/thegamma.js"], function (_, g) {      
       // Configure type providers available in The Gamma
       // (when running thegamma-services locally, use http://127.0.0.1:10042/)
       var services = "https://thegamma-services.azurewebsites.net/";      
