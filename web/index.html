@@ -114,7 +114,7 @@ chart.column(data).legend(position="none")
           "worldbank": g.providers.rest(services + "worldbank"),
           //"houses": g.providers.pivot("http://127.0.0.1:8087/land-registry-monthly-price-paid-data"),
           //"medals": g.providers.pivot("http://127.0.0.1:8087/medals"),
-          "libraries": g.providers.library("/node_modules/thegamma-script/dist/libraries.json"),
+          "libraries": g.providers.library("https://thegamma.net/lib/thegamma-0.0.18/libraries.json"),
           "olympics": g.providers.pivot(services + "pdata/olympics"),
           "expenditure": g.providers.rest("http://127.0.0.1:8080") });
           
