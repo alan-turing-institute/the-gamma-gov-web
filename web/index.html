@@ -91,10 +91,10 @@ youguess.columns(data)
     // This follows the standard way of loading the Monaco editor (https://github.com/Microsoft/monaco-editor)
     // although we use normal 'require.js' and also load the compiled 'thegamma.js' (which depends on Monaco)
     require.config({
-      paths:{'vs':'https://thegamma.net/lib/thegamma-0.0.20/vs'},
+      paths:{'vs':'node_modules/monaco-editor/min/vs'},
       map:{ "*":{"monaco":"vs/editor/editor.main"}}
     });
-    require(["vs/editor/editor.main", "https://thegamma.net/lib/thegamma-0.0.20/thegamma.js"], function (_, g) {      
+    require(["vs/editor/editor.main", "node_modules/thegamma-script/dist/thegamma.js"], function (_, g) {      
       // Configure type providers available in The Gamma
       // (when running thegamma-services locally, use http://127.0.0.1:10042/)
       var services = "https://thegamma-services.azurewebsites.net/";      
@@ -103,7 +103,7 @@ youguess.columns(data)
           "worldbank": g.providers.rest(services + "worldbank"),
           //"houses": g.providers.pivot("http://127.0.0.1:8087/land-registry-monthly-price-paid-data"),
           //"medals": g.providers.pivot("http://127.0.0.1:8087/medals"),
-          "libraries": g.providers.library("https://thegamma.net/lib/thegamma-0.0.20/libraries.json"),
+          "libraries": g.providers.library("/node_modules/thegamma-script/dist/libraries.json"),
           "olympics": g.providers.pivot(services + "pdata/olympics"),
           "expenditure": g.providers.rest("http://127.0.0.1:10039/expenditure") });
           
