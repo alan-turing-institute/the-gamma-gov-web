@@ -39,7 +39,7 @@ youguess.columns(data)
       <div class="col-md-2 hidden-sm"></div>
       <div class="col-md-8 col-sm-12">
         <a href="/"><h1><span><strong>The Gamma</strong>: Expenditure Edition</span></h1></a>
-        <p>This is a minimal sample page demonstrating the new expenditure data. In order for it to work, you need to host <a href="https://github.com/alan-turing-institute/thegamma-gov/tree/dev">this service</a> at 127.0.0.1:8080!</p>        
+        <p>This is a minimal sample page demonstrating the new expenditure data. In order for it to work, you need to host <a href="https://github.com/the-gamma/govuk-expenditure-service">this service</a> at 127.0.0.1:10039!</p>        
       </div>
       </div>
       <div class="row">
@@ -91,10 +91,10 @@ youguess.columns(data)
     // This follows the standard way of loading the Monaco editor (https://github.com/Microsoft/monaco-editor)
     // although we use normal 'require.js' and also load the compiled 'thegamma.js' (which depends on Monaco)
     require.config({
-      paths:{'vs':'https://thegamma.net/lib/thegamma-0.0.18/vs'},
+      paths:{'vs':'https://thegamma.net/lib/thegamma-0.0.20/vs'},
       map:{ "*":{"monaco":"vs/editor/editor.main"}}
     });
-    require(["vs/editor/editor.main", "https://thegamma.net/lib/thegamma-0.0.18/thegamma.js"], function (_, g) {      
+    require(["vs/editor/editor.main", "https://thegamma.net/lib/thegamma-0.0.20/thegamma.js"], function (_, g) {      
       // Configure type providers available in The Gamma
       // (when running thegamma-services locally, use http://127.0.0.1:10042/)
       var services = "https://thegamma-services.azurewebsites.net/";      
@@ -103,9 +103,9 @@ youguess.columns(data)
           "worldbank": g.providers.rest(services + "worldbank"),
           //"houses": g.providers.pivot("http://127.0.0.1:8087/land-registry-monthly-price-paid-data"),
           //"medals": g.providers.pivot("http://127.0.0.1:8087/medals"),
-          "libraries": g.providers.library("https://thegamma.net/lib/thegamma-0.0.18/libraries.json"),
+          "libraries": g.providers.library("https://thegamma.net/lib/thegamma-0.0.20/libraries.json"),
           "olympics": g.providers.pivot(services + "pdata/olympics"),
-          "expenditure": g.providers.rest("http://127.0.0.1:8080") });
+          "expenditure": g.providers.rest("http://127.0.0.1:10039/expenditure") });
           
       // Create context which is used to create editor & run code
       // When errors are reported, display the errors in modal dialog (while editting)
