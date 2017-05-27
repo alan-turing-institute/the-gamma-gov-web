@@ -23,7 +23,7 @@
 <body>
   <div id="sizer"></div>
 
-  <script type="text/thegamma" id="demo">let data = 
+  <script type="text/thegamma" id="demo1">let data = 
   expenditure
     .byYear.'2015'
     .inTermsOf.GDP
@@ -33,13 +33,21 @@ youguess.columns(data)
   .setLabel("Guess how much we spend (as % of GDP) on the top 6 government functions!")
   </script>
 
+  <script type="text/thegamma" id="demo2">let data = 
+  expenditure
+    .byService.'Science and technology'
+    .byAccount.Capital
+
+youguess.line(data).setClip(2012)
+  </script>
+
   <article>
     <div class="container">
       <div class="row">
       <div class="col-md-2 hidden-sm"></div>
       <div class="col-md-8 col-sm-12">
-        <a href="/"><h1><span><strong>The Gamma</strong>: Expenditure Edition</span></h1></a>
-        <p>This is a minimal sample page demonstrating the new expenditure data. In order for it to work, you need to host <a href="https://github.com/the-gamma/govuk-expenditure-service">this service</a> at 127.0.0.1:10039!</p>        
+        <a href="/"><h1><span><strong>The Gamma</strong>: Demo1</span></h1></a>
+        <p>Test1</p>        
       </div>
       </div>
       <div class="row">
@@ -51,18 +59,43 @@ youguess.columns(data)
             Loading the visualization...
           </div>
         </div>
-        <button class="btn btn-success" id="editbtn">Edit source code</button>
+        <button class="btn btn-success" id="editbtn1">Edit source code</button>
+      </div>
+      </div>
+    </div>
+  </article>
+
+  <article>
+    <div class="container">
+      <div class="row">
+      <div class="col-md-2 hidden-sm"></div>
+      <div class="col-md-8 col-sm-12">
+        <a href="/"><h1><span><strong>The Gamma</strong>: Expenditure Edition</span></h1></a>
+        <p>Demo2</p> 
+        <p>This is a minimal sample page demonstrating the new expenditure data. In order for it to work, you need to host <a href="https://github.com/the-gamma/govuk-expenditure-service">this service</a> at 127.0.0.1:10039!</p>        
+      </div>
+      </div>
+      <div class="row">
+      <div class="col-sm-12 thegamma">
+        <!-- The 'out1' element is used as output - running the visualization code will create
+          chart and put the output in the `out1` element below (replacng the loading text) -->
+        <div id="out2" class="output">
+          <div class="placeholder">
+            Loading the visualization...
+          </div>
+        </div>
+        <button class="btn btn-success" id="editbtn2">Edit source code</button>
       </div>
       </div>
     </div>
   </article>
             
-  <div class="modal fade" id="editor" tabindex="-1" role="dialog">
+  <div class="modal fade" id="editor1" tabindex="-1" role="dialog">
     <div class="modal-dialog" style="width:80vw; max-width:1000px">
       <div class="modal-content" style="height:90vh">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-          <h4 class="modal-title">Editor</h4>
+          <h4 class="modal-title">Editor Demo1</h4>
         </div>
         <div class="modal-body thegamma">
           <!-- This modal dialog opens when you click "Edit source code" - the 'ed1' element
@@ -70,7 +103,26 @@ youguess.columns(data)
             code below to render errors reported from The Gamma -->
           <div id="ed1"></div>
           <div id="ed1-errors" class="errors"></div>
-          <button class="btn btn-success" id="okbtn">Update page</button>
+          <button class="btn btn-success" id="okbtn1">Update page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editor2" tabindex="-1" role="dialog">
+    <div class="modal-dialog" style="width:80vw; max-width:1000px">
+      <div class="modal-content" style="height:90vh">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          <h4 class="modal-title">Editor Demo2</h4>
+        </div>
+        <div class="modal-body thegamma">
+          <!-- This modal dialog opens when you click "Edit source code" - the 'ed2' element
+            is used to create the Monaco-based source editor and 'ed1-errors' is used in the
+            code below to render errors reported from The Gamma -->
+          <div id="ed2"></div>
+          <div id="ed2-errors" class="errors"></div>
+          <button class="btn btn-success" id="okbtn2">Update page</button>
         </div>
       </div>
     </div>
@@ -101,8 +153,6 @@ youguess.columns(data)
       var providers = 
         g.providers.createProviders({ 
           "worldbank": g.providers.rest(services + "worldbank"),
-          //"houses": g.providers.pivot("http://127.0.0.1:8087/land-registry-monthly-price-paid-data"),
-          //"medals": g.providers.pivot("http://127.0.0.1:8087/medals"),
           "libraries": g.providers.library("/node_modules/thegamma-script/dist/libraries.json"),
           "olympics": g.providers.pivot(services + "pdata/olympics"),
           "expenditure": g.providers.rest("http://127.0.0.1:10039/expenditure") });
@@ -122,13 +172,20 @@ youguess.columns(data)
       });
 
       // Get sample code and run it; use the '#out1' element for outputs
-      var code = document.getElementById("demo").innerHTML;
-      ctx.evaluate(code, "out1");
+      var code1 = document.getElementById("demo1").innerHTML;
+      ctx.evaluate(code1, "out1");
+
+      var code2 = document.getElementById("demo2").innerHTML;
+      ctx.evaluate(code2, "out2");
 
       // We create editor lazily when the "Edit source code" button is clicked the first time
-      var editor = null;
-      var editbtn = document.getElementById("editbtn");
-      var okbtn = document.getElementById("okbtn");
+      var editor1 = null;
+      var editbtn1 = document.getElementById("editbtn1");
+      var okbtn1 = document.getElementById("okbtn1");
+
+      var editor2 = null;
+      var editbtn2 = document.getElementById("editbtn2");
+      var okbtn2 = document.getElementById("okbtn2");
       
       // Options passed to the editor - specify size & configuration function
       // that sets properties directly for the Monaco editor
@@ -143,16 +200,29 @@ youguess.columns(data)
           } };
 
       // Create editor if it is not created yet
-      editbtn.onclick = function() {
-        $('#editor').modal();
-        if (!editor) editor = ctx.createEditor("ed1", code, opts);
+      editbtn1.onclick = function() {
+        $('#editor1').modal();
+        if (!editor1) editor1 = ctx.createEditor("ed1", code1, opts);
       };
       
       // Get editor text and run it on the main page
-      okbtn.onclick = function() { 
-        $('#editor').modal('hide');
-        code = editor.getValue();
-        ctx.evaluate(code, "out1");
+      okbtn1.onclick = function() { 
+        $('#editor1').modal('hide');
+        code1 = editor1.getValue();
+        ctx.evaluate(code1, "out1");
+      };
+
+      // Create editor if it is not created yet
+      editbtn2.onclick = function() {
+        $('#editor2').modal();
+        if (!editor2) editor2 = ctx.createEditor("ed2", code2, opts);
+      };
+      
+      // Get editor text and run it on the main page
+      okbtn2.onclick = function() { 
+        $('#editor2').modal('hide');
+        code2 = editor2.getValue();
+        ctx.evaluate(code, "out2");
       };
     });
   </script>
